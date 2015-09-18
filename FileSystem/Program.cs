@@ -22,8 +22,11 @@ namespace FileSystem
                 Console.ResetColor();
 
                 string saisie = Console.ReadLine();
-                commande = GetCommand(saisie);
-                string arg = GetArgument(saisie);
+                commande = getCommand(saisie);
+                string arg = getArgument(saisie);
+                string argBis = getArgumentBis(saisie);
+
+
 
                 try
                 {
@@ -40,8 +43,8 @@ namespace FileSystem
                         { Console.WriteLine("Erreur! Le fichier n'a pas été créé (Vérifiez vos permissions)"); }
 
                     }
-                    
-                    
+
+
                     else if (commande == "mkdir" && arg != null && saisie != null)
                     {
                         bool estOK = current.mkdir(arg);
@@ -52,15 +55,15 @@ namespace FileSystem
                         {
                             Console.WriteLine("Vous ne disposez pas des droits!");
                         }
-                         
+
                     }
-                    
+
 
                     if (commande == "ls" && saisie != null)
                     {
                         if (current.canRead())
                         {
-                            List<File> list = current.newls();
+                            List<File> list = current.ls();
 
                             if (list.Count == 0)
                             {
@@ -70,9 +73,9 @@ namespace FileSystem
                             {
                                 foreach (File charge in list)
                                 {
-                                    if (charge.isFile()==true)
+                                    if (charge.isFile() == true)
                                     {
-                                        Console.WriteLine("("+charge.getPermission()+")" + " (f) " + charge.Name);
+                                        Console.WriteLine("(" + charge.getPermission() + ")" + " (f) " + charge.Name);
                                     }
                                     else
                                     {
@@ -110,8 +113,24 @@ namespace FileSystem
                             Console.WriteLine("Le fichier est supprimé.");
                         }
                         else
+
                         {
                             Console.WriteLine("Suppression impossible.");
+                        }
+                    }
+                    if (commande == "rename" && arg != null && saisie != null && argBis != null)
+                    {
+                        File nvNom = current.newcd(arg);
+
+                        bool estOk = nvNom.renameTo(argBis);
+
+                        if (estOk)
+                        {
+                            Console.WriteLine("Dossier/Fichier renommé avec succès!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Erreur! Dossier/Fichier impossible à renommer");
                         }
                     }
 
@@ -124,12 +143,12 @@ namespace FileSystem
                     }
                 }
 
-                /*if (commande == "path")
+                if (commande == "path")
                 {
                     string lepath = enCour.getPath();
                     Console.WriteLine(lepath);
-                }*/
-                
+                }
+
                 if (commande == "parent")
                 {
                     enCour = enCour.getParent();
@@ -166,22 +185,10 @@ namespace FileSystem
                 {
                     File root = enCour.getRoot();
                     Console.WriteLine(root.Name);
-                    
+
                 }
 
-                if (commande == "rename" && arg != null && saisie != null)
-                {
-                    bool estOk = enCour.renameTo(arg);
 
-                    if (estOk)
-                    {
-                        Console.WriteLine("Dossier/Fichier renommé avec succès!");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Erreur! Dossier/Fichier impossible a renommer");
-                    }
-                }
                 if (commande == "clear")
                 {
                     Console.Clear();
@@ -198,12 +205,12 @@ namespace FileSystem
                         Console.WriteLine("Attention, le nombre pour la permission est incorrect.");
                     }
                 }
-                if (commande == "reboot" && saisie != null)
+                if (commande == "restart" && saisie != null)
                 {
                     Console.WriteLine("Le système va redémarrer");
                 }
 
-            } while (commande != "reboot");
+            } while (commande != "restart");
 
 
 
@@ -211,7 +218,7 @@ namespace FileSystem
         }
 
 
-        static string GetCommand(string varUser)
+        static string getCommand(string varUser)
         {
             string[] word = varUser.Split(' ');
 
@@ -225,7 +232,7 @@ namespace FileSystem
             }
 
         }
-        static string GetArgument(string varUser)
+        static string getArgument(string varUser)
         {
             string[] word = varUser.Split(' ');
             if (word.Length > 1)
@@ -235,5 +242,16 @@ namespace FileSystem
             else
             { return null; }
         }
+        static string getArgumentBis(string varUser)
+        {
+            string[] word = varUser.Split(' ');
+            if (word.Length > 2)
+            {
+                return word[2];
+            }
+            else
+            { return null; }
+        }
+
     }
 }

@@ -68,7 +68,7 @@ namespace FileSystem
         
 
         //méthode pour afficher la liste de fichiers
-        public List<File> newls()
+        public List<File> ls()
         {
             return this.Contenu;
         }
@@ -96,9 +96,10 @@ namespace FileSystem
                 if (charge.Name == nom)
                 {
                     Contenu.Remove(charge);
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
 
 

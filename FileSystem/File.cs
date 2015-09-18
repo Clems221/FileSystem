@@ -39,16 +39,22 @@ namespace FileSystem
 
 
         //méthode pour connaître le chemin complet du fichier sur lequel l'utilisateur se trouve
-         public string getPath()
-         {
-             while (Parent != null)
-             {
+        public string getPath()
+        {
 
 
-             }
+            string unPath = this.Name;
+            File parent2 = Parent;
 
-         }
-         
+            while (parent2 != null)
+            {
+                unPath = parent2.Name + "/" + unPath;
+                parent2 = parent2.Parent;
+            }
+
+            return unPath;
+        }
+
 
 
         //méthode pour chercher un fichier en donnant son nom
@@ -61,7 +67,7 @@ namespace FileSystem
 
         public File getRoot()
         {
-            if (this.Name != "C:")
+            if (this.Name != " C: ")
             {
                 return this.Parent;
             }
@@ -84,7 +90,7 @@ namespace FileSystem
         // méthode pour avoir le fichier parent
         public File getParent()
         {
-            if (this.Name != "C:")
+            if (this.Name != " C: ")
             { return this.Parent; }
             else
             {
@@ -105,23 +111,32 @@ namespace FileSystem
         public bool isFile()
         {
             if (typeof(Directory) == this.GetType())
-            { return false; }
+            {
+                return false;
+            }
             else
-            { return true; }
+            {
+                return true;
+            }
         }
 
-        internal List<File> ls()
+        internal List<File> newls()
         {
             throw new NotImplementedException();
         }
+        
 
         //booléen pour savoir si c'est un répertoire
         public virtual bool isDirectory()
         {
             if (typeof(File) == this.GetType())
-            { return true; }
+            {
+                return false;
+            }
             else
-            { return false; }
+            {
+                return true;
+            }
         }
 
         //méthode pour définir les droits
@@ -132,6 +147,7 @@ namespace FileSystem
 
         public bool renameTo(string newName)
         {
+
             if (canWrite())
             {
                 this.Name = newName;
