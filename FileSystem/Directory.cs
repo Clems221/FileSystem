@@ -45,7 +45,7 @@ namespace FileSystem
         }
 
         //méthode permettant de se déplacer sur un fichier
-        public File newcd(string nom)
+        public File cd(string nom)
         {
             if (this.canRead())
             {
@@ -62,15 +62,12 @@ namespace FileSystem
             {
                 return null;
             }
-
         }
-
-        
 
         //méthode pour afficher la liste de fichiers
         public List<File> ls()
         {
-            return this.Contenu;
+                return this.Contenu; 
         }
 
 

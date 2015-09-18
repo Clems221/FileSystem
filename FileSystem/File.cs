@@ -56,13 +56,13 @@ namespace FileSystem
         }
 
 
-
+        /*
         //méthode pour chercher un fichier en donnant son nom
-        /* public List<File> search(string name)
+         public List<File> search(string name)
          {
-
-         }*/
-
+            foreach (File recherche in )
+         }
+        */
 
 
         public File getRoot()
@@ -171,10 +171,7 @@ namespace FileSystem
             return (Permissions & 1) > 0;
         }
 
-        internal File cd(string arg)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public bool canRead()
         {

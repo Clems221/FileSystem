@@ -14,7 +14,6 @@ namespace FileSystem
             string commande;
             File enCour = new Directory(" C: ", true);
 
-
             do
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -24,13 +23,10 @@ namespace FileSystem
                 string saisie = Console.ReadLine();
                 commande = getCommand(saisie);
                 string arg = getArgument(saisie);
-                string argBis = getArgumentBis(saisie);
-
-
+                string argBis = getArgumentBis(saisie); //Nouvelle saisie pour renommer un fichier
 
                 try
                 {
-
                     Directory current = (Directory)enCour;
 
                     if (commande == "create" && saisie != null)
@@ -38,9 +34,13 @@ namespace FileSystem
                         bool estOK = current.createNewFile(arg);
 
                         if (estOK)
-                        { Console.WriteLine("Le fichier est créé"); }
+                        {
+                            Console.WriteLine("Le fichier est créé");
+                        }
                         else
-                        { Console.WriteLine("Erreur! Le fichier n'a pas été créé (Vérifiez vos permissions)"); }
+                        {
+                            Console.WriteLine("Erreur! Le fichier n'a pas été créé (Vérifiez vos permissions)");
+                        }
 
                     }
 
@@ -50,7 +50,9 @@ namespace FileSystem
                         bool estOK = current.mkdir(arg);
 
                         if (estOK)
-                        { Console.WriteLine("Dossier " + "<" + arg + ">" + " créé"); }
+                        {
+                            Console.WriteLine("Dossier " + "<" + arg + ">" + " créé");
+                        }
                         else
                         {
                             Console.WriteLine("Vous ne disposez pas des droits!");
@@ -59,7 +61,7 @@ namespace FileSystem
                     }
 
 
-                    if (commande == "ls" && saisie != null)
+                    if (commande == "ls" && saisie != null && arg == null)
                     {
                         if (current.canRead())
                         {
@@ -93,7 +95,7 @@ namespace FileSystem
                     }
                     else if (commande == "cd" && arg != null && saisie != null)
                     {
-                        File suivant = current.newcd(arg);
+                        File suivant = current.cd(arg);
 
                         if (suivant == null)
                         {
@@ -105,7 +107,7 @@ namespace FileSystem
 
                         }
                     }
-                    else if (commande == "remove" && saisie != null && arg != null)
+                    if (commande == "remove" && saisie != null && arg != null)
                     {
                         bool estOk = current.delete(arg);
                         if (estOk)
@@ -120,7 +122,7 @@ namespace FileSystem
                     }
                     if (commande == "rename" && arg != null && saisie != null && argBis != null)
                     {
-                        File nvNom = current.newcd(arg);
+                        File nvNom = current.cd(arg);
 
                         bool estOk = nvNom.renameTo(argBis);
 
@@ -133,6 +135,8 @@ namespace FileSystem
                             Console.WriteLine("Erreur! Dossier/Fichier impossible à renommer");
                         }
                     }
+                    /*if (commande =="search" && arg != null && saisie != null)
+                    { }*/
 
                 }
                 catch
@@ -184,8 +188,7 @@ namespace FileSystem
                 if (commande == "root")
                 {
                     File root = enCour.getRoot();
-                    Console.WriteLine(root.Name);
-
+                    Console.WriteLine(root.Name);  
                 }
 
 
