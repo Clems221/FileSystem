@@ -99,6 +99,9 @@ namespace FileSystem
             return false;
         }
 
-
+        public bool IsDirectory()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
