@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileSystem
 {
-    class File
+    public class File
     {
 
         public string Name { get; set; }
@@ -60,7 +60,8 @@ namespace FileSystem
         //méthode pour chercher un fichier en donnant son nom
          public List<File> search(string name)
          {
-            foreach (File recherche in )
+            foreach (File recherche in Contenu)
+
          }
         */
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileSystem
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -107,7 +107,7 @@ namespace FileSystem
 
                         }
                     }
-                    if (commande == "remove" && saisie != null && arg != null)
+                    if (commande == "delete" && saisie != null && arg != null)
                     {
                         bool estOk = current.delete(arg);
                         if (estOk)
