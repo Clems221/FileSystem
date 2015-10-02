@@ -129,9 +129,25 @@ namespace TU
         {
             Directory Essai = (Directory)current.cd("Dossier1");
             Essai.chmod(4);
-
             Assert.AreEqual(Essai.getName(), "Dossier1");
         }
+
+        [TestMethod]
+        public void getName1()
+        {
+            Directory Essai = (Directory)current.cd("Dossier1");
+            Essai.chmod(1);
+            Assert.AreNotEqual(Essai.getName(), "Dossier1");
+        }
+
+        [TestMethod]
+        public void getName2()
+        {
+            Directory Essai = (Directory)current.cd("Dossier1");
+            Essai.chmod(2);
+            Assert.AreNotEqual(Essai.getName(), "Dossier1");
+        }
+
         [TestMethod]
         public void getPath()
         {
@@ -151,10 +167,16 @@ namespace TU
             Essai.chmod(7);
             Assert.AreEqual(Essai.getPermission(), 7);
         }
-        
-        
-        
-        
+        [TestMethod]
+        public void getPermission1()
+        {
+            Directory Essai = (Directory)current.cd("Dossier1");
+            Essai.chmod(2);
+            Assert.AreNotEqual(Essai.getPermission(), 7);
+        }
+
+
+
 
     }
 }
