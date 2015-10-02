@@ -31,9 +31,9 @@ namespace TU
             current.mkdir("Dossier3");
             current.createNewFile("CFile");
             NouvFile = current.cd("NouvFile");
-            Dossier1 = (Directory)NouvFile;
-            
-
+            Dossier1 = (Directory)current.cd("Dossier1");
+            Dossier2 = (Directory)current.cd("Dossier2");
+            Dossier3 = (Directory)current.cd("Dossier3");
 
 
             CFile = current.cd("CFile");
@@ -63,7 +63,8 @@ namespace TU
         [TestMethod]
         public void Chmod()
         {
-            Assert.AreEqual(NouvFile, Dossier1);
+            Dossier2.chmod(1);
+            Assert.IsTrue(Dossier2.canExecute());
         }
         
         [TestMethod]
