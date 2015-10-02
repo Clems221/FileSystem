@@ -28,6 +28,15 @@ namespace FileSystem
                 try
                 {
                     Directory current = (Directory)enCour;
+                    if (commande != "mkdir" && commande != "create" &&
+                    commande != "cd" && commande != "rename" &&
+                    commande != "search" && commande != "delete" &&
+                    commande != "path" && commande != "ls" && commande != "root" &&
+                    commande != "parent" && commande != "file" && commande != "directory" &&
+                    commande != "name" && commande != "chmod" && commande != "exit")
+                    {
+                        Console.WriteLine("Commande inconnue, veuillez réessayer");
+                    }
 
                     if (commande == "create" && saisie != null)
                     {
@@ -135,8 +144,15 @@ namespace FileSystem
                             Console.WriteLine("Erreur! Dossier/Fichier impossible à renommer");
                         }
                     }
-                    /*if (commande =="search" && arg != null && saisie != null)
-                    { }*/
+                    if (commande == "search" && saisie != null && arg != null)
+                    {
+                        List<File> resultat = current.search(arg);
+
+                        foreach (File encours in resultat)
+                        {
+                            Console.WriteLine(encours.getPath());
+                        }
+                    }
 
                 }
                 catch

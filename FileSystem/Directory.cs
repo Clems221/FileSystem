@@ -73,15 +73,18 @@ namespace FileSystem
 
         public bool renameTo(string newName, string nameFolder)
         {
-            if (canWrite())
-            {
-                this.Name = newName;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            
+
+                if (canWrite())
+                {
+                    this.Name = newName;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            
 
         }
 
@@ -99,9 +102,30 @@ namespace FileSystem
             return false;
         }
 
-        public bool IsDirectory()
+        public List<File> search(string nom)
         {
-            throw new NotImplementedException();
+            List<File> recherche = new List<File>();
+
+            foreach (File encours in Contenu)
+            {
+                if (encours.Name == nom)
+                {
+                    recherche.Add(encours);
+                }
+
+                if (encours.isDirectory())
+                {
+                    List<File> autre = new List<File>();
+                    Directory other = (Directory)encours;
+                    autre = other.search(nom);
+                    foreach (File courants in autre)
+                    {
+                        recherche.Add(courants);
+                    }
+                }
+            }
+            return recherche;
         }
+
     }
 }

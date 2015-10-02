@@ -32,7 +32,6 @@ namespace FileSystem
             Console.WriteLine("#######################");
             Console.WriteLine();
 
-
         }
 
 
@@ -41,8 +40,6 @@ namespace FileSystem
         //méthode pour connaître le chemin complet du fichier sur lequel l'utilisateur se trouve
         public string getPath()
         {
-
-
             string unPath = this.Name;
             File parent2 = Parent;
 
@@ -56,14 +53,7 @@ namespace FileSystem
         }
 
 
-        /*
-        //méthode pour chercher un fichier en donnant son nom
-         public List<File> search(string name)
-         {
-            foreach (File recherche in Contenu)
 
-         }
-        */
 
 
         public File getRoot()
@@ -83,7 +73,14 @@ namespace FileSystem
         //méthode pour avoir le nom du fichier
         public string getName()
         {
-            return this.Name;
+            if (canRead())
+            {
+                return this.Name;
+            }
+            else
+            {
+                return null;
+            }
         }
 
 
@@ -92,7 +89,9 @@ namespace FileSystem
         public File getParent()
         {
             if (this.Name != " C: ")
-            { return this.Parent; }
+            {
+                return this.Parent;
+            }
             else
             {
                 Console.WriteLine("Impossible de remonter plus haut");
@@ -122,11 +121,8 @@ namespace FileSystem
             }
         }
 
-        internal List<File> newls()
-        {
-            throw new NotImplementedException();
-        }
-        
+
+
 
         //booléen pour savoir si c'est un répertoire
         public virtual bool isDirectory()

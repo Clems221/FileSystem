@@ -24,15 +24,15 @@ namespace TU
         [TestInitialize]
         public void SetUp()
         {
-            current = new Directory("/", true);
+            current = new Directory("C:", true);
+            current.chmod(7);
             current.mkdir("Dossier1");
             current.mkdir("Dossier2");
             current.mkdir("Dossier3");
             current.createNewFile("CFile");
             NouvFile = current.cd("NouvFile");
             Dossier1 = (Directory)NouvFile;
-            //Dossier1.chmod(7);
-            //Dossier1.mkdir("NouvDossier");
+            
 
 
 
@@ -82,39 +82,79 @@ namespace TU
         [TestMethod]
         public void renameTo()
         {
-            Assert.IsTrue(current.renameTo("NouveauDossier1", "Dossier1"));
+            Assert.IsTrue(current.renameTo("NouveauDossier1", "test"));
         }
-        /*
-        [TestMethod]
-        public void getName()
-        {
-            Assert.IsTrue();
-        }
-        
         [TestMethod]
         public void IsFile()
         {
-            Assert.IsTrue(CFile.IsFile());
+            Assert.IsFalse(Dossier2.isFile());
         }
-        
+
         [TestMethod]
         public void IsDirectory()
         {
-            Assert.IsTrue(current.IsDirectory(Dossier1));
+            Assert.IsFalse(CFile.isDirectory());
         }
-        
-        
+        [TestMethod]
+        public void search()
+        {
+            File recherche = current.cd("Dossier1");
+            Assert.AreEqual(recherche.Name,"Dossier1");
+        }
 
         [TestMethod]
-        public void getPermission()
+        public void getRoot()
         {
-            Assert.IsTrue();
+
+            Directory Essai= (Directory)current.cd("Dossier1");
+            Essai.chmod(7);
+            Essai.mkdir("Dossier2");
+            Directory Essai2 = (Directory)Essai.cd("Dossier2");
+            Assert.AreEqual(Essai2.getRoot().getName(), "Dossier1");
         }
+        
+        
         [TestMethod]
         public void getParent()
         {
-            Assert.IsTrue();
-        }*/
+            Directory Essai = (Directory)current.cd("Dossier1");
+            Essai.chmod(7);
+            Essai.mkdir("Dossier2");
+            Directory Essai2 = (Directory)Essai.cd("Dossier2");
+            Essai2.cd("Dossier1");
+            Assert.AreEqual(Essai2.getParent().getName(), "Dossier1");
+        }
+        [TestMethod]
+        public void getName()
+        {
+            Directory Essai = (Directory)current.cd("Dossier1");
+            Essai.chmod(4);
+
+            Assert.AreEqual(Essai.getName(), "Dossier1");
+        }
+        [TestMethod]
+        public void getPath()
+        {
+            Directory Essai = (Directory)current.cd("Dossier1");
+            Essai.chmod(7);
+            Essai.mkdir("Dossier2");
+            Directory Essai2 = (Directory)Essai.cd("Dossier2");
+
+            Assert.AreEqual(Essai2.getPath(), "C:/Dossier1/Dossier2");
+        }
+        
+        
+        [TestMethod]
+        public void getPermission()
+        {
+            Directory Essai = (Directory)current.cd("Dossier1");
+            Essai.chmod(7);
+            Assert.AreEqual(Essai.getPermission(), 7);
+        }
+        
+        
+        
+        
 
     }
 }
