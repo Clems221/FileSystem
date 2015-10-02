@@ -1,9 +1,0 @@
-C:\Users\Clem\Documents\workspace\FileSystem\TestsUnitaires-FileSystem\bin\Debug\TestsUnitaires-FileSystem.dll
-C:\Users\Clem\Documents\workspace\FileSystem\TestsUnitaires-FileSystem\bin\Debug\TestsUnitaires-FileSystem.pdb
-C:\Users\Clem\Documents\workspace\FileSystem\TestsUnitaires-FileSystem\bin\Debug\FileSystem.exe
-C:\Users\Clem\Documents\workspace\FileSystem\TestsUnitaires-FileSystem\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-C:\Users\Clem\Documents\workspace\FileSystem\TestsUnitaires-FileSystem\bin\Debug\FileSystem.pdb
-C:\Users\Clem\Documents\workspace\FileSystem\TestsUnitaires-FileSystem\bin\Debug\fr\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
-C:\Users\Clem\Documents\workspace\FileSystem\TestsUnitaires-FileSystem\obj\Debug\TestsUnitaires-FileSystem.csprojResolveAssemblyReference.cache
-C:\Users\Clem\Documents\workspace\FileSystem\TestsUnitaires-FileSystem\obj\Debug\TestsUnitaires-FileSystem.dll
-C:\Users\Clem\Documents\workspace\FileSystem\TestsUnitaires-FileSystem\obj\Debug\TestsUnitaires-FileSystem.pdb

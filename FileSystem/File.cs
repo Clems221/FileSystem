@@ -88,6 +88,7 @@ namespace FileSystem
         // méthode pour avoir le fichier parent
         public File getParent()
         {
+ 
             if (this.Name != " C: ")
             {
                 return this.Parent;
@@ -98,6 +99,7 @@ namespace FileSystem
 
                 return this;
             }
+            
         }
 
 
@@ -111,6 +113,7 @@ namespace FileSystem
         //booléen pour savoir si c'est un fichier
         public bool isFile()
         {
+
             if (typeof(Directory) == this.GetType())
             {
                 return false;
@@ -119,6 +122,7 @@ namespace FileSystem
             {
                 return true;
             }
+            
         }
 
 

@@ -18,12 +18,35 @@ namespace FileSystem
 
 
         public bool mkdir(string name)
+
         {
-            if (base.canWrite())
+            if (this.canWrite())
             {
-                Directory newDirectory = new Directory(name, this);
-                Contenu.Add(newDirectory);
-                return true;
+                if (Contenu.Count() == 0)
+                {
+                    Directory newDirectory = new Directory(name, this);
+                    Contenu.Add(newDirectory);
+                    return true;
+                }
+                else
+                {
+                    foreach (File file in Contenu)
+                    {
+                        if (file.Name != name)
+                        {
+                            Directory newDirectory = new Directory(name, this);
+                            Contenu.Add(newDirectory);
+                            return true;
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Vous ne pouvez pas créér de dossier!");
+                            return false;
+                        }
+                    }
+                    return true;
+                }
             }
             else
             {
@@ -35,8 +58,29 @@ namespace FileSystem
         {
             if (this.canWrite())
             {
-                Contenu.Add(new File(name, this));
-                return true;
+                if (Contenu.Count() == 0)
+                {
+                    Contenu.Add(new File(name, this));
+                    return true;
+                }
+                else
+                {
+                    foreach (File file in Contenu)
+                    {
+                        if (file.Name != name)
+                        {
+                            Contenu.Add(new File(name, this));
+                            return true;
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Vous ne pouvez pas créér de fichier!");
+                            return false;
+                        }
+                    }
+                    return true;
+                }
             }
             else
             {
@@ -67,24 +111,24 @@ namespace FileSystem
         //méthode pour afficher la liste de fichiers
         public List<File> ls()
         {
-                return this.Contenu; 
+            return this.Contenu;
         }
 
 
         public bool renameTo(string newName, string nameFolder)
         {
-            
 
-                if (canWrite())
-                {
-                    this.Name = newName;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            
+
+            if (canWrite())
+            {
+                this.Name = newName;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
 
         }
 
